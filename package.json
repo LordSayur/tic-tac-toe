@@ -8,14 +8,25 @@
   "workspaces": [
     "packages/*"
   ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,vue}": "eslint --fix",
+    "*": "prettier -w -u ."
+  },
   "devDependencies": {
     "@babel/core": "^7.15.5",
     "@babel/node": "^7.15.4",
     "@babel/preset-env": "^7.15.6",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.2",
     "jest": "^27.2.0",
     "lerna": "^4.0.0",
+    "lint-staged": "^11.1.2",
     "prettier": "^2.4.1",
     "rollup": "^2.56.3"
   }
