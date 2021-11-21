@@ -1,0 +1,20 @@
+@startuml "Tic Tac Toe Classes"
+!theme sketchy-outline
+
+class Game {
+  -#states
+  -#stepIndex
+  -#winner
+  +get currentState
+  +get canUndo
+  +get canRedo
+  +get allStates
+  +get winner
+  +start(states=emptyState)
+  +makeMove({row, col})
+  +undo()
+  +redo()
+  +replay(callbackFn = null, playSpeed = 1000)
+  +check()
+}
+@enduml
