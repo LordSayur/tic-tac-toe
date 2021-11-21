@@ -1,0 +1,8 @@
+{
+  "name": "@tic-tac-toe/web-test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "lordsayur",
+  "license": "MIT",
+  "private": false,
+}
