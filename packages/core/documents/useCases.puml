@@ -1,0 +1,23 @@
+@startuml "Tic Tac Toe Use Cases"
+!theme sketchy-outline
+left to right direction
+
+actor player
+actor system
+
+rectangle "Tic Tac Toe" {
+  usecase (start game)
+  usecase (make move)
+  usecase undo
+  usecase redo
+  usecase replay
+  usecase check
+}
+
+player --> (start game)
+player --> (make move)
+player --> (undo)
+player --> (redo)
+player --> (replay)
+system --> (check)
+@enduml
