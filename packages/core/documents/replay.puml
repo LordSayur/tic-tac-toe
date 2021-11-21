@@ -1,0 +1,19 @@
+@startuml "Tic Tac Toe Replay Activity"
+!theme sketchy-outline
+
+start
+: set current turn to 0;
+: run call back function;
+: run setInterval();
+
+repeat
+-> after 1 second;
+: redo();
+: run call back function;
+repeat while (!canRedo) is (no)
+-> yes;
+: clear interval;
+
+stop
+
+@enduml
