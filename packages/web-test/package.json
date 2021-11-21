@@ -5,4 +5,11 @@
   "author": "lordsayur",
   "license": "MIT",
   "private": false,
+  "dependencies": {
+    "cypress": "^9.0.0"
+  },
+  "scripts": {
+    "cypress:open": "yarn run cypress open",
+    "cypress:run": "cypress run"
+  }
 }
