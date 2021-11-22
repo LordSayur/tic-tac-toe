@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "test": "concurrently -k -s first \"yarn run build && yarn run serve\" \"cd ../web-test && yarn run cypress:run\""
   },
   "dependencies": {
     "@tic-tac-toe/core": "^1.0.0",
