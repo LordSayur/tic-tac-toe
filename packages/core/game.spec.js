@@ -1,4 +1,5 @@
-import { Game, EMPTY_STATE as emptyState } from "./index";
+import { Game } from "./index";
+import { EMPTY_STATE as emptyState } from "./constants";
 
 describe("> Game", () => {
   describe(">> on start", () => {

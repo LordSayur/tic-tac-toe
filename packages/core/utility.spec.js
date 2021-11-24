@@ -1,4 +1,4 @@
-import { EMPTY_STATE } from ".";
+import { EMPTY_STATE } from "./constants";
 import { cloneState } from "./utility";
 
 describe("> Utility", () => {
