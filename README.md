@@ -4,7 +4,12 @@
 
 This project is an attempt to separate core logic from UI logic and ultimately consuming the same core logic from different web UI frameworks such as Vue js, React js and Svelte. However, this idea can also be extended to not just UI framework but different platform such as browser extension, VS code extension, desktop application, mobile application etc.
 
-This project is highly influenced by Lachlan Miller's video on [Functional Core, Imperative Shell](https://www.youtube.com/watch?v=kPLGftyQ5ho).
+Benefits:
+
+- since core logic is separate from UI logic, and core logic will hardly change, it will be easy to move from one UI framework to another (e.g. React to Vue) or from older version of the same framework to newer version (e.g. Vue Option API to Vue Composition API)
+- share core logic for different platform (web: Vue, mobile: nativescript-vue, browser/vs-code extension: vanilla js, etc)
+
+This project is highly influenced by Lachlan Miller's video on [Functional Core, Imperative Shell](https://www.youtube.com/watch?v=kPLGftyQ5ho) and [clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) by Uncle Bob.
 
 This project uses:
 
