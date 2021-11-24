@@ -1,7 +1,7 @@
 describe("tic-tac-toe", () => {
   describe("As a player", () => {
     beforeEach(() => {
-      cy.visit("http://localhost:5000");
+      cy.visit("/");
     });
     it("should be able to see board with initial state", () => {
       cy.get(cell({ row: 0, col: 0 })).should("have.text", "-");
