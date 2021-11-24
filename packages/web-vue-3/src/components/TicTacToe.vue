@@ -50,14 +50,30 @@ const replay = () => {
     <button id="start" data-test="start" type="button" @click="start">
       Start
     </button>
-    <button id="undo" data-test="undo" type="button" @click="undo">Undo</button>
-    <button id="redo" data-test="redo" type="button" @click="redo">Redo</button>
+    <button
+      id="undo"
+      data-test="undo"
+      type="button"
+      @click="undo"
+      :disabled="!game.canUndo"
+    >
+      Undo
+    </button>
+    <button
+      id="redo"
+      data-test="redo"
+      type="button"
+      @click="redo"
+      :disabled="!game.canRedo"
+    >
+      Redo
+    </button>
     <button id="replay" data-test="replay" type="button" @click="replay">
       Replay
     </button>
   </div>
-  <div id="winner-message" data-test="winner-message" v-show="game.winner">
-    The winner is {{ game.winner }}!
+  <div id="winner-message" data-test="winner-message">
+    <template v-if="game.winner"> The winner is {{ game.winner }}! </template>
   </div>
 </template>
 
@@ -74,6 +90,9 @@ button {
 }
 button:hover {
   color: goldenrod;
+}
+button:hover:disabled {
+  color: rgba(16, 16, 16, 0.3);
 }
 #buttons {
   padding: 1rem;
