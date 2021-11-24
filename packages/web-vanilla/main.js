@@ -17,11 +17,13 @@ document.addEventListener("DOMContentLoaded", () => {
     drawBoard(game.currentState, $board);
     setWinnerMessage("");
     check();
+    setDisabledStateFor("undo", "redo");
   });
   $redoBtn.addEventListener("click", () => {
     game.redo();
     drawBoard(game.currentState, $board);
     check();
+    setDisabledStateFor("undo", "redo");
   });
   $replayBtn.addEventListener("click", () => {
     game.replay(() => drawBoard(game.currentState, $board));
@@ -33,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     game.start();
     drawBoard(game.currentState, $board);
     setWinnerMessage("");
+    setDisabledStateFor("undo", "redo");
   }
 
   function drawBoard(currentBoard, board) {
@@ -64,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     game.makeMove({ row, col });
     drawBoard(game.currentState, $board);
     check();
+    setDisabledStateFor("undo", "redo");
   }
   function check() {
     game.check();
@@ -73,5 +77,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   function setWinnerMessage(message) {
     $winnerMessage.innerHTML = message;
+  }
+  function setDisabledStateFor(...btnName) {
+    if (btnName.includes("redo")) {
+      game.canRedo
+        ? $redoBtn.removeAttribute("disabled")
+        : $redoBtn.setAttribute("disabled", "");
+    }
+    if (btnName.includes("undo")) {
+      game.canUndo
+        ? $undoBtn.removeAttribute("disabled")
+        : $undoBtn.setAttribute("disabled", "");
+    }
   }
 });
