@@ -5,7 +5,7 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "test": "concurrently -k -s first \"yarn run build && yarn run serve --port 5001\" \"cd ../web-test && yarn run cypress:run --config baseUrl=http://localhost:5001,video=false\""
+    "test": "concurrently -k -s first \"pnpm run build && pnpm run serve --port 5001\" \"cd ../web-test && pnpm run cypress:run --config baseUrl=http://localhost:5001,video=false\""
   },
   "dependencies": {
     "@tic-tac-toe/core": "^1.0.0",

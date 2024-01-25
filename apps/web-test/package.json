@@ -9,7 +9,7 @@
     "cypress": "^9.0.0"
   },
   "scripts": {
-    "cypress:open": "yarn run cypress open",
+    "cypress:open": "pnpm run cypress open",
     "cypress:run": "cypress run"
   }
 }
