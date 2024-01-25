@@ -2,108 +2,152 @@
 
 ## About
 
-This project is an attempt to separate core logic from UI logic and ultimately consuming the same core logic from different web UI frameworks such as Vue js, React js and Svelte. However, this idea can also be extended to not just UI framework but different platform such as browser extension, VS code extension, desktop application, mobile application etc.
+This project aims to decouple the core logic from the UI logic, enabling the consumption of the same core logic across various web UI frameworks such as Vue.js, React.js, and Svelte. Moreover, this approach can be extended not only to different UI frameworks but also to various platforms like browser extensions, VS Code extensions, desktop applications, and mobile applications.
 
-Benefits:
+### Benefits:
 
-- since core logic is separate from UI logic, and core logic will hardly change, it will be easy to move from one UI framework to another (e.g. React to Vue) or from older version of the same framework to newer version (e.g. Vue Option API to Vue Composition API)
-- share core logic for different platform (web: Vue, mobile: nativescript-vue, browser/vs-code extension: vanilla js, etc)
+- **Separation of Concerns:**
+  Since core logic is isolated from UI logic, transitioning between UI frameworks (e.g., from React to Vue) or upgrading within the same framework becomes seamless.
 
-This project is highly influenced by Lachlan Miller's video on [Functional Core, Imperative Shell](https://www.youtube.com/watch?v=kPLGftyQ5ho) and [clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) by Uncle Bob.
+- **Code Reusability:**
+  The core logic can be shared across different platforms, facilitating development for web, mobile, browser extensions, VS Code extensions, etc.
 
-This project uses:
+### Influences:
 
-- monorepo (lerna & Yarn workspace)
-- Test driven development
-- Jest for unit testing
-- Cypress for end to end testing
-- prettier for code formatter
-- eslint for static checking
-- plantUML for documentation
+This project draws inspiration from Lachlan Miller's concept of [Functional Core, Imperative Shell](https://www.youtube.com/watch?v=kPLGftyQ5ho) and Uncle Bob's [clean architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 
-This project has several packages:
+### Technologies Used:
 
-- core
-  where the core logic is implemented. The main approach is using object oriented programming. In the future, functional programming approach will also be implemented under @tic-tac-toe/core/fp
-- web-test
-  This is for end to end testing project using cypress. This test will be framework independent as long as each UI project uses same dat-test attributes.
-- web-vanilla
-  UI project without using any framework
-- web-vue-3
-  UI project using Vue js
+- **Monorepo (pnpm workspace)**
+- **Test Driven Development**
+- **Jest for Unit Testing**
+- **Cypress for End-to-End Testing**
+- **Prettier for Code Formatting**
+- **ESLint for Static Code Checking**
+- **PlantUML for Documentation**
 
-## Project setup
+### Project Structure:
 
-- Installing dependencies
+- **core:**
+  Contains the core logic implemented using object-oriented programming. Future plans include implementing a functional programming approach under `@tic-tac-toe/core/fp`.
 
+- **web-test:**
+  An end-to-end testing project using Cypress. Framework-independent as long as UI projects use the same data-test attributes.
+
+- **web-vanilla:**
+  A UI project without using any framework.
+
+- **web-vue-3:**
+  A UI project using Vue.js.
+
+## Project Setup
+
+### Installing Dependencies
+
+```bash
+# At root folder
+pnpm install
 ```
-yarn
+
+- Running Tests
+
+```bash
+# At root folder
+pnpm run test
 ```
 
-- Run all tests
-
-```
-yarn run lerna:test
-```
-
-- View PlantUML diagram (VS Code)
-  Install [PlantUML extension](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml). Read on requirement section for further instruction. Once everything is installed, open any puml file, right click on the code and select Preview Current Diagram (Alt D)
+- Viewing PlantUML Diagram (VS Code)
+  Install the [PlantUML extension](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml), and follow the requirements section for further instructions. Once installed, open any `.puml` file, right-click on the code, and select "Preview Current Diagram" (Alt + D).
 
 ### core
 
-- run jest with watch mode
+- Run jest with watch mode:
 
-```
-yarn run test:watch
+```bash
+pnpm run test:watch
 ```
 
 ### web-vanilla
 
-- run development server
+- Run development server:
 
-```
-yarn run dev
+```bash
+pnpm run dev
 ```
 
-- run end to end test
+- Run end-to-end tests:
 
-```
-yarn run test
+```bash
+pnpm run test
 ```
 
 ### web-vue-3
 
-- run development server
+- Run development server:
 
-```
-yarn run dev
+```bash
+pnpm run dev
 ```
 
-- run end to end test
+- Run end-to-end tests:
 
-```
-yarn run test
+```bash
+pnpm run test
 ```
 
 ## How to contribute
 
 - Improve README file 😆
-- Improve game.check() algorithm
-- Add different UI framework
+- Improve the `game.check()` algorithm
+- Add support different UI frameworks
 
-## How to add new package
+## How to add new App
 
-- Create new folder under Packages
-- cd into newly created folder
-- run `yarn init`
-- make sure change the name inside package.json with @tic-tac-toe prefix (please refer to other package.json)
-- start developing the new package.
-  Note: this project is using Yarn.
+- Create new project folder under apps
+- Ensure to change the name inside `package.json` with `@tic-tac-toe` prefix (refer to other `package.json` files)
+- Start developing the new package.
 
-## How to add core package to another package
+Note: This project is using pnpm.
 
-- run
+## How create new app using vite and link core package
 
+- Navigate to `apps` folder
+
+- Run following command and follow the instructions:
+
+```bash
+pnpm create vite
 ```
-lerna add @tic-tac-toe/core --scope=@tic-tac-toe/new_package_name
+
+- Navigate to newly created project
+- Open `package.json` file and rename `name` property and append `@tic-tac-toe` to the current name.
+
+```json
+# example
+{
+  "name": "@tic-tac-toe/web-react",
+  ...
+}
 ```
+
+- Add test script to your `package.json` file:
+
+```json
+{
+  "name": "@tic-tac-toe/web-react",
+  "version": "0.0.0",
+  "scripts": {
+    ...
+    "test": "concurrently -k -s first \"pnpm run build && pnpm run serve --port 5000\" \"cd ../web-test && pnpm run cypress:run --config baseUrl=http://localhost:5000,video=false\""
+  },
+ ...
+}
+```
+
+- Link core package to the newly created app
+
+```bash
+pnpm link @tic-tac-toe/core
+```
+
+- Start development
